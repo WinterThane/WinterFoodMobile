@@ -15,6 +15,7 @@ namespace WinterFoodMobile.Models
         public int Servings { get; set; }
         public string Difficulty { get; set; }
         public string ImageURL { get; set; }
+        public bool Favourite { get; set; }
         public int CategoryID { get; set; }
         public int CreatedByUserID { get; set; }
         public DateTime CreatedAt { get; set; }

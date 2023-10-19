@@ -12,7 +12,7 @@ namespace WinterFoodMobile.Database
             _database = database;
         }
 
-        public List<Recipe> GetAllTask() 
+        public List<Recipe> GetAllRecipesTask() 
         {
             return _database.Table<Recipe>().ToList();
         }

@@ -9,9 +9,10 @@ namespace WinterFoodMobile.Database
 
         public DatabaseService()
         {
-            //var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "winterfood.db3");
-            //_database = new SQLiteConnection(databasePath);
-            //_database.CreateTable<Recipe>();
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "winterfood.db3");
+            _database = new SQLiteConnection(databasePath);
+            _database.DropTable<Recipe>();
+            _database.CreateTable<Recipe>();
 
             //var databaseName = "winterfood.db3";
             //string databasePath = Path.Combine(FileSystem.AppDataDirectory, databaseName);

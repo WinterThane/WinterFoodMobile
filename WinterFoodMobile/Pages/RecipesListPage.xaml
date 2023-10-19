@@ -2,14 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WinterFoodMobile.Pages.RecipesListPage"
+             xmlns:vm="clr-namespace:WinterFoodMobile.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="RecipesListPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Recipe List"
-            Margin="5"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
-        <Image Source="dotnet_bot" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <vm:RecipesListPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView ItemsSource="{Binding Recipes}"
+              HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <toolkit:Expander>
+                        <toolkit:Expander.Header>
+                            <Label Text="{Binding Title}"
+                                   FontAttributes="Bold" />
+                        </toolkit:Expander.Header>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Description}" />
+                            <Label Text="{Binding Instructions}" />
+                            <Label Text="{Binding Difficulty}" />
+                            <Label Text="{Binding ImageURL}" />
+                        </VerticalStackLayout>
+                    </toolkit:Expander>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
