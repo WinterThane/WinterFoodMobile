@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControl="clr-namespace:WinterFoodMobile.CustomControls"
              x:Class="WinterFoodMobile.Pages.PlanerPage"
+             BackgroundColor="Black"
              Title="Planer">
 
     <Grid>
@@ -10,8 +11,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <DatePicker Grid.Row="1" />
 
         <customControl:CalendarView Grid.Row="0"
                                     x:Name="calendar"

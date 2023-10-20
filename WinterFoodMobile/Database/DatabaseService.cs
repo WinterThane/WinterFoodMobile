@@ -1,24 +1,18 @@
 ﻿using SQLite;
-using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.Database
 {
     public class DatabaseService
     {
         private SQLiteConnection _database;
+        public static string DbPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "wtrecipesdb.db3");
 
         public DatabaseService()
         {
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "winterfood.db3");
-            _database = new SQLiteConnection(databasePath);
-            _database.DropTable<Recipe>();
-            _database.CreateTable<Recipe>();
-
-            //var databaseName = "winterfood.db3";
-            //string databasePath = Path.Combine(FileSystem.AppDataDirectory, databaseName);
-            //const SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite |
-            //                              SQLiteOpenFlags.Create |
-            //                              SQLiteOpenFlags.SharedCache;
+            _database = new SQLiteConnection(DbPath);
+            // Run only once
+            //_database.DropTable<Recipe>();
+            //_database.CreateTable<Recipe>();
         }      
         
         public SQLiteConnection GetConnection()

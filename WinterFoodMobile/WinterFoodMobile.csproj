@@ -49,8 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Database\wtrecipesdb.db3" />
 	  <None Remove="Resources\Images\btn_plan.png" />
 	  <None Remove="Resources\Images\btn_recipes.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Database\wtrecipesdb.db3">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,6 +76,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\PlanerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\RecipeDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\RecipesListPage.xaml">

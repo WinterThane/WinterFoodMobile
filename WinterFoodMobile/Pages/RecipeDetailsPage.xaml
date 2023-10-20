@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WinterFoodMobile.Pages.RecipeDetailsPage"
+             xmlns:vm="clr-namespace:WinterFoodMobile.ViewModels"
+             BackgroundColor="Black"
+             Title="RecipeDetailsPage">
+
+    <ContentPage.BindingContext>
+        <vm:RecipeDetailsPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Text="{Binding RecipeObj.Title}" />
+    </Grid>
+</ContentPage>

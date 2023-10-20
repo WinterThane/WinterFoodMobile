@@ -51,7 +51,7 @@
                                HorizontalTextAlignment="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
-                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="TextColor" Value="Black" />
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
@@ -62,14 +62,14 @@
                                HorizontalTextAlignment="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
-                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="TextColor" Value="Black" />
                                 </DataTrigger>
                             </Label.Triggers>
                         </Label>
                     </VerticalStackLayout>
                     <Border.Triggers>
                         <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="True">
-                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                            <Setter Property="BackgroundColor" Value="#FAD225" />
                         </DataTrigger>
                         <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="False">
                             <Setter Property="BackgroundColor" Value="Transparent" />

@@ -11,13 +11,12 @@ namespace WinterFoodMobile.Models
         public string Instructions { get; set; }
         public int PrepTime { get; set; }
         public int CookTime { get; set; }
-        public int TotalTime { get; set; }
         public int Servings { get; set; }
-        public string Difficulty { get; set; }
         public string ImageURL { get; set; }
+        public byte[] ImageData { get; set; }
         public bool Favourite { get; set; }
         public int CategoryID { get; set; }
         public int CreatedByUserID { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
