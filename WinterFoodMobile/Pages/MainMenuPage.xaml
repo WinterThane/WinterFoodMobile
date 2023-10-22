@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WinterFoodMobile.Pages.MainMenuPage"   
              BackgroundColor="Black"
-             Title="WinterFood">
+             Title="WT's Recipes App">
 
     <Grid>
         <Grid.RowDefinitions>

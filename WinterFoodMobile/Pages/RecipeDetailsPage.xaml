@@ -80,7 +80,7 @@
         <Border Grid.Row="0" 
                 Grid.Column="1"
                 StrokeThickness="0"
-                Margin="30, 0, 0, 0"
+                Margin="20, 0, 0, 0"
                 StrokeShape="RoundRectangle 20, 0, 20, 0"
                 BackgroundColor="#202020">
             <Image Source="{Binding RecipeObj.ImageURL}"
@@ -106,7 +106,7 @@
 
         <VerticalStackLayout Grid.Row="1"
                              Grid.Column="1"
-                             Margin="30, 20, 0, 0"
+                             Margin="20, 20, 0, 0"
                              HorizontalOptions="End">
 
             <Border StrokeThickness="0"
