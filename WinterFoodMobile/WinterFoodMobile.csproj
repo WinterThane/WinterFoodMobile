@@ -52,6 +52,8 @@
 	  <None Remove="Database\wtrecipesdb.db3" />
 	  <None Remove="Resources\Images\btn_plan.png" />
 	  <None Remove="Resources\Images\btn_recipes.png" />
+	  <None Remove="Resources\Images\favourite0.png" />
+	  <None Remove="Resources\Images\favourite1.png" />
 	</ItemGroup>
 
 	<ItemGroup>

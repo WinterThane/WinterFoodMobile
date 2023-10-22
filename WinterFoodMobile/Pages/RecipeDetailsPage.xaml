@@ -4,18 +4,164 @@
              x:Class="WinterFoodMobile.Pages.RecipeDetailsPage"
              xmlns:vm="clr-namespace:WinterFoodMobile.ViewModels"
              BackgroundColor="Black"
-             Title="RecipeDetailsPage">
+             Title="Recipe Details">
 
     <ContentPage.BindingContext>
         <vm:RecipeDetailsPageViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="titleLabel">
+            <Setter Property="TextColor" Value="#FAD225" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Italic" />
+            <Setter Property="Margin" Value="0, 10, 0, 0" />
+        </Style>
+    </ContentPage.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Text="{Binding RecipeObj.Title}" />
-    </Grid>
+        <Label Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               Text="{Binding RecipeObj.Title}" 
+               FontSize="22" 
+               FontAttributes="Bold" 
+               Margin="10"
+               TextColor="#FAD225"
+               HorizontalTextAlignment="Center" />
+        <Image Grid.Row="0" 
+               Grid.Column="1"
+               HeightRequest="30"
+               Margin="0, 0, 10, 0"
+               Source="{Binding FavouriteIMG}"
+               HorizontalOptions="End" />
+
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                Padding="10, 7, 10, 7"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 0, 20, 0, 20"
+                BackgroundColor="#202020">
+            <VerticalStackLayout>
+                <Label Text="{Binding RecipeObj.Description}" />
+
+                <Label Text="Preparation:"
+                       Style="{StaticResource titleLabel}" />
+                <Label Text="{Binding RecipeObj.Instructions}" />
+
+                <Label Text="Prep. time:"
+                       Style="{StaticResource titleLabel}" />
+                <HorizontalStackLayout>
+                    <Label Text="{Binding RecipeObj.PrepTime}" />
+                    <Label Text=" minutes" />
+                </HorizontalStackLayout>
+
+                <Label Text="Cooking time:"
+                       Style="{StaticResource titleLabel}" />
+                <HorizontalStackLayout>
+                    <Label Text="{Binding RecipeObj.CookingTime}" />
+                    <Label Text=" minutes" />
+                </HorizontalStackLayout>
+
+                <Label Text="No. of servings:"
+                       Style="{StaticResource titleLabel}" />
+                <HorizontalStackLayout>
+                    <Label Text="{Binding RecipeObj.Servings}" />
+                </HorizontalStackLayout>
+
+                <Label Text="Category:"
+                       Style="{StaticResource titleLabel}" />
+                <HorizontalStackLayout>
+                    <Label Text="{Binding RecipeObj.CategoryID}" />
+                </HorizontalStackLayout>
+
+                <Label Text="Created by:"
+                       Style="{StaticResource titleLabel}" />
+                <Label FontSize="10" 
+                       Text="{Binding RecipeObj.CreatedByUserID}" />
+                <Label FontSize="10" 
+                       Text="{Binding RecipeObj.CreatedDate, StringFormat=dd.MM.yyyy}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="1" 
+                Grid.Column="1"
+                StrokeThickness="0"
+                Margin="30, 0, 0, 0"
+                StrokeShape="RoundRectangle 20, 0, 20, 0"
+                BackgroundColor="#202020">
+            <Image Source="{Binding RecipeObj.ImageURL}"
+                   Aspect="AspectFill">
+                <Image.Clip>
+                    <RectangleGeometry Rect="0, 0, 250, 700" />
+                </Image.Clip>
+            </Image>
+        </Border>
+
+        <Border Grid.Column="0"
+                Grid.Row="2"
+                Margin="0, 20, 0, 0"
+                Padding="10, 7, 10, 7"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 0, 20, 0, 20"
+                BackgroundColor="#202020">
+            <Label Text="Ingredients:"
+                   Margin="0"
+                   Style="{StaticResource titleLabel}" />
+            
+        </Border>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.Column="1"
+                             Margin="30, 20, 0, 0"
+                             HorizontalOptions="End">
+
+            <Border StrokeThickness="0"
+                    StrokeShape="RoundRectangle 10, 0, 10, 0"
+                    BackgroundColor="#FAD225">
+                <Button Text="Edit recipe"
+                        HeightRequest="40"
+                        WidthRequest="250"
+                        Padding="5"
+                        FontSize="18"
+                        FontAttributes="Bold" />    
+            </Border>
+
+            <Border StrokeThickness="0"
+                    Margin="0, 10, 0, 0"
+                    StrokeShape="RoundRectangle 10, 0, 10, 0"
+                    BackgroundColor="#FAD225">
+                <Button Text="Edit ingredients"
+                        HeightRequest="40"
+                        WidthRequest="250"
+                        Padding="5"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+            </Border>
+
+            <Border StrokeThickness="0"
+                    Margin="0, 10, 0, 0"
+                    StrokeShape="RoundRectangle 10, 0, 10, 0"
+                    BackgroundColor="#FAD225">
+                <Button Text="Delete"
+                        HeightRequest="40"
+                        WidthRequest="250"
+                        Padding="5"
+                        FontSize="20"
+                        TextColor="Red"
+                        FontAttributes="Bold" />
+            </Border>
+        </VerticalStackLayout>        
+
+    </Grid>    
 </ContentPage>
