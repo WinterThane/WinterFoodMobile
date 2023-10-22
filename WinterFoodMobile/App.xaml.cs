@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using WinterFoodMobile.Converters;
 using WinterFoodMobile.Database;
 using WinterFoodMobile.Models;
 using WinterFoodMobile.Pages;
@@ -23,6 +24,7 @@ namespace WinterFoodMobile
                 }
             }
 
+            Resources.Add("FavouriteTrueFalseConverter", new FavouriteTrueFalseConverter());
             MainPage = new NavigationPage(new MainMenuPage());
             //MainPage = new AppShell();
         }

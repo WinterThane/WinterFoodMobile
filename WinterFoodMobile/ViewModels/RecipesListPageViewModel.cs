@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using WinterFoodMobile.Database;
+﻿using WinterFoodMobile.Database;
 using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.ViewModels
@@ -7,6 +6,7 @@ namespace WinterFoodMobile.ViewModels
     public class RecipesListPageViewModel
     {
         public List<Recipe> Recipes { get; set; }
+        public ImageSource FavouriteIMG { get; set; }
 
         public RecipesListPageViewModel()
         {

@@ -9,7 +9,7 @@ public partial class RecipeDetailsPage : ContentPage
 
     public RecipeDetailsPage(Recipe recipe)
 	{
-		InitializeComponent();
-        BindingContext = new RecipeDetailsPageViewModel(recipe);
+        InitializeComponent();
+        BindingContext = new RecipeDetailsPageViewModel(recipe);        
     }
 }
