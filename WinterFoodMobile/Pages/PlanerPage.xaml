@@ -3,18 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControl="clr-namespace:WinterFoodMobile.CustomControls"
              x:Class="WinterFoodMobile.Pages.PlanerPage"
+             xmlns:vm ="clr-namespace:WinterFoodMobile.ViewModels"
              BackgroundColor="Black"
              Title="Planer">
 
+    <ContentPage.BindingContext>
+        <vm:PlanerPageViewModel />
+    </ContentPage.BindingContext>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <customControl:CalendarView Grid.Row="0"
                                     x:Name="calendar"
                                     OnDateSelected="calendar_OnDateSelected" />
+
+        <Button Grid.Row="1" 
+                FontSize="36"
+                Text="+"
+                Margin="0, 20, 0, 0"
+                WidthRequest="50"
+                HeightRequest="50"
+                Padding="0, -5, 0, 0">
+            <Button.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddRecipeToPlan_Tapped" />
+            </Button.GestureRecognizers>
+        </Button>
 
     </Grid>
 </ContentPage>

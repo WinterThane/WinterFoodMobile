@@ -3,28 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:WinterFoodMobile.Models"
              x:Class="WinterFoodMobile.CustomControls.CalendarView"
-             x:Name="this"
-             Spacing="10">
+             x:Name="this">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" 
-               FontSize="22" 
-               FontAttributes="Bold"
-               Text="{Binding Source={x:Reference this}, Path=SelectedDate, StringFormat='{0: MMM dd yyyy}'}" />
-
-        <HorizontalStackLayout Grid.Column="1"
-                               Spacing="20"
-                               HorizontalOptions="End">
+        <HorizontalStackLayout Grid.Row="0"
+                               HorizontalOptions="Center">
             <Label Text="Prev Month">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=PreviousMonthCommand}" />
                 </Label.GestureRecognizers>
             </Label>
+
+            <Label Text="{Binding Source={x:Reference this}, Path=SelectedDate, StringFormat='{0: MMMM - yyyy}'}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Padding="0, -5, 0, 0"
+                   Margin="30, 0, 30, 0" />
 
             <Label Text="Next Month">
                 <Label.GestureRecognizers>
@@ -32,55 +32,78 @@
                 </Label.GestureRecognizers>
             </Label>
         </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Source={x:Reference this}, Path=Dates}"
+                        ItemsLayout="VerticalGrid, 7">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CalendarModel">
+                    <Border WidthRequest="50"
+                            Padding="3"
+                            Margin="0, 3">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Date, StringFormat='{0:ddd}'}"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
+                                        <Setter Property="TextColor" Value="Black" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <Label Text="{Binding Date, StringFormat='{0:d }'}"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
+                                        <Setter Property="TextColor" Value="Black" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </VerticalStackLayout>
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="True">
+                                <Setter Property="BackgroundColor" Value="#FAD225" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="False">
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=CurrentDateCommand}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="2"
+              Margin="0, 30, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <HorizontalStackLayout Grid.Row="0"
+                                   Grid.ColumnSpan="4"
+                                   HorizontalOptions="Center">
+                <Label Text="Selected date:"
+                       FontSize="16" 
+                       Margin="0, 0, 10, 0"
+                       VerticalTextAlignment="Center" />
+                <Label FontSize="16" 
+                       FontAttributes="Bold"
+                       Text="{Binding Source={x:Reference this}, Path=SelectedDate, StringFormat='{0: dd.MM.yyyy}'}" />
+            </HorizontalStackLayout>
+
+        </Grid>
     </Grid>
-
-    
-
-    <CollectionView ItemsSource="{Binding Source={x:Reference this}, Path=Dates}">
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Horizontal"
-                               ItemSpacing="10" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:CalendarModel">
-                <Border WidthRequest="80"
-                        Padding="10">
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Date, StringFormat='{0:ddd}'}"
-                               FontSize="18"
-                               HorizontalTextAlignment="Center">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
-                                    <Setter Property="TextColor" Value="Black" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-
-                        <Label Text="{Binding Date, StringFormat='{0:d }'}"
-                               FontSize="18"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
-                                    <Setter Property="TextColor" Value="Black" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                    </VerticalStackLayout>
-                    <Border.Triggers>
-                        <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="True">
-                            <Setter Property="BackgroundColor" Value="#FAD225" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Border" Binding="{Binding IsCurrentDate}" Value="False">
-                            <Setter Property="BackgroundColor" Value="Transparent" />
-                        </DataTrigger>
-                    </Border.Triggers>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=CurrentDateCommand}" CommandParameter="{Binding .}" />
-                    </Border.GestureRecognizers>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-
 </StackLayout>

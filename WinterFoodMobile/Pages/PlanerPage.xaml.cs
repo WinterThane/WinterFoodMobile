@@ -21,6 +21,11 @@ public partial class PlanerPage : ContentPage
 
     private void calendar_OnDateSelected(object sender, DateTime e)
     {
+        
+    }
 
+    private void AddRecipeToPlan_Tapped(object sender, TappedEventArgs e)
+    {
+        var x = calendar.SelectedDate;
     }
 }

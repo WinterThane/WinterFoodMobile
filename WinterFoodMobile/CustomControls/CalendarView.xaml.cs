@@ -14,6 +14,31 @@ public partial class CalendarView : StackLayout
         defaultValue: DateTime.Now,
         propertyChanged: SelectedDatePropertyChanged);
 
+    private DateTime _tempDate;
+    public event EventHandler<DateTime> OnDateSelected;
+
+    public DateTime SelectedDate
+    {
+        get => (DateTime)GetValue(SelectedDateProperty);
+        set => SetValue(SelectedDateProperty, value);
+    }
+
+    public ICommand SelectedDateCommand
+    {
+        get => (ICommand)GetValue(SelectedDateCommandProperty);
+        set => SetValue(SelectedDateCommandProperty, value);
+    }  
+
+    public ObservableCollection<CalendarModel> Dates { get; set; } = new ObservableCollection<CalendarModel>();
+
+    public static readonly BindableProperty SelectedDateCommandProperty = BindableProperty.Create(nameof(SelectedDateCommand), typeof(ICommand), declaringType: typeof(CalendarView));
+
+    public CalendarView()
+    {
+        InitializeComponent();
+        BindDates(DateTime.Now);
+    }
+
     private static void SelectedDatePropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var controls = (CalendarView)bindable;
@@ -30,38 +55,11 @@ public partial class CalendarView : StackLayout
                     currentDate.IsCurrentDate = true;
                 }
             }
+            else
             {
                 controls.BindDates(newDate);
             }            
         }
-    }
-
-    public DateTime SelectedDate
-    {
-        get => (DateTime)GetValue(SelectedDateProperty);
-        set => SetValue(SelectedDateProperty, value);
-    }
-
-    public static readonly BindableProperty SelectedDateCommandProperty = BindableProperty.Create(
-       nameof(SelectedDateCommand),
-       typeof(ICommand),
-       declaringType: typeof(CalendarView));
-
-    public ICommand SelectedDateCommand
-    {
-        get => (ICommand)GetValue(SelectedDateCommandProperty);
-        set => SetValue(SelectedDateCommandProperty, value);
-    }
-
-    public event EventHandler<DateTime> OnDateSelected;
-    private DateTime _tempDate;
-
-    public ObservableCollection<CalendarModel> Dates { get; set; } = new ObservableCollection<CalendarModel>();
-
-    public CalendarView()
-	{
-        InitializeComponent();
-        BindDates(DateTime.Now);
     }
 
     private void BindDates(DateTime date)

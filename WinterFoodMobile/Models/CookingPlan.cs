@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
 
 namespace WinterFoodMobile.Models
 {
     public class CookingPlan
     {
-        [Key]
+        [PrimaryKey, AutoIncrement]
         public int PlanID { get; set; }
         public int UserID { get; set; }
         public int RecipeID { get; set; }
         public DateTime ScheduledDate { get; set; }
-        public string? Notes { get; set; }
+        public string Notes { get; set; }
     }
 }
