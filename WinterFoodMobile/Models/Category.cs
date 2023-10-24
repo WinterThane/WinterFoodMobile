@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
 
 namespace WinterFoodMobile.Models
 {
     public class Category
     {
-        [Key]
+        [PrimaryKey, AutoIncrement]
         public int CategoryID { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
     }
 }

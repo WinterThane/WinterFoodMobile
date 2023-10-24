@@ -65,7 +65,7 @@
                 <Label Text="Category:"
                        Style="{StaticResource titleLabel}" />
                 <HorizontalStackLayout>
-                    <Label Text="{Binding RecipeObj.CategoryID}" />
+                    <Label Text="{Binding CategoryName}" />
                 </HorizontalStackLayout>
 
                 <Label Text="Created by:"

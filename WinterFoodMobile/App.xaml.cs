@@ -8,7 +8,6 @@ namespace WinterFoodMobile
 {
     public partial class App : Application
     {
-        public List<Recipe> Recipes { get; set; }
         public App()
         {
             InitializeComponent();
