@@ -9,12 +9,12 @@ public partial class RecipesListPage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void AddToPlan_Tapped(object sender, TappedEventArgs e)
+    private void AddToPlan_Tapped(object sender, TappedEventArgs e)
     {
         if (sender is Button button)
         {
             var selectedRecipe = button.BindingContext as Recipe;
-            await Navigation.PushAsync(new PlanerPage(selectedRecipe));
+            // add recipe to planer - direct
         }
     }
 

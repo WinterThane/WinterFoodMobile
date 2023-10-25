@@ -12,9 +12,20 @@ namespace WinterFoodMobile.Database
             _database = database;
         }
 
-        public int InsertCookingPlanTask(CookingPlan cookingPlan)
+        public CookingPlan GetRecipeByDate(DateTime date)
         {
-            return _database.Insert(cookingPlan);
+            return _database.Find<CookingPlan>(date);
+        }
+
+        public void InsertCookingPlanTask(CookingPlan cookingPlan)
+        {
+            _database.Insert(cookingPlan);
+
+            //string insertQuery = "INSERT INTO CookingPlan (UserID, RecipeID, ScheduledDate, Notes) VALUES (@UserID, @RecipeID, @ScheduledDate, @Notes)";
+            //return _database.Execute(insertQuery, cookingPlan);
+
+            //_database.Insert(cookingPlan);
+            //return cookingPlan.PlanID;
         }
     }
 }

@@ -1,31 +1,29 @@
 using WinterFoodMobile.Models;
+using WinterFoodMobile.ViewModels;
 
 namespace WinterFoodMobile.Pages;
 
 public partial class PlanerPage : ContentPage
 {
-    public Recipe RecipeObj { get; set; }
-
+    public Recipe SelectedRecipe { get; set; }
     public PlanerPage()
 	{
 		InitializeComponent();    
         calendar.SelectedDate = DateTime.Now;
     }
 
-    public PlanerPage(Recipe recipe)
-    {
-        InitializeComponent();
-        RecipeObj = recipe;
-        calendar.SelectedDate = DateTime.Now;
-    }
-
-    private void calendar_OnDateSelected(object sender, DateTime e)
-    {
-        
-    }
-
     private void AddRecipeToPlan_Tapped(object sender, TappedEventArgs e)
     {
-        var x = calendar.SelectedDate;
+        var vm = new PlanerPageViewModel();
+        if (SelectedRecipe != null)
+        {
+            vm.AddRecipeToPlan(SelectedRecipe, calendar.SelectedDate);
+        }
+    }
+
+    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var list = sender as ListView;
+        SelectedRecipe = list.SelectedItem as Recipe;
     }
 }
