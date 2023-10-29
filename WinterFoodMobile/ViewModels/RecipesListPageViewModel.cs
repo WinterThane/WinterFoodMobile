@@ -1,20 +1,35 @@
-﻿using WinterFoodMobile.Database;
+﻿using MvvmHelpers;
+using MvvmHelpers.Commands;
+using WinterFoodMobile.Database;
 using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.ViewModels
 {
-    public class RecipesListPageViewModel
+    public class RecipesListPageViewModel : ViewModelBase
     {
-        public List<Recipe> Recipes { get; set; }
-        public ImageSource FavouriteIMG { get; set; }
+        public ObservableRangeCollection<Recipe> RecipeList { get; set; }
+        public AsyncCommand RefreshCommand { get; }
+        
+        public AsyncCommand UpdateRecipeCommand { get; }
+        public AsyncCommand RemoveRecipeCommand { get; }
 
         public RecipesListPageViewModel()
         {
-            var databaseService = new DatabaseService();
-            var recipeService = new RecipeService(databaseService.GetConnection());
-            
-            Recipes = new List<Recipe>();
-            Recipes.AddRange(recipeService.GetAllRecipesTask());
+            RecipeList = new ObservableRangeCollection<Recipe>();
+            RefreshCommand = new AsyncCommand(Refresh);
+            _ = Refresh();
+        }
+
+        async Task Refresh()
+        {
+            IsBusy = true;
+            await Task.Delay(2000);
+            RecipeList.Clear();
+
+            var recipes = await RecipeService.GetAllRecipes();
+            RecipeList.AddRange(recipes);
+
+            IsBusy = false;
         }
     }
 }

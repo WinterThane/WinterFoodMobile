@@ -4,7 +4,7 @@ namespace WinterFoodMobile.Models
 {
     public class CookingPlan
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement, Unique, NotNull]
         public int PlanID { get; set; }
         public int UserID { get; set; }
         public int RecipeID { get; set; }

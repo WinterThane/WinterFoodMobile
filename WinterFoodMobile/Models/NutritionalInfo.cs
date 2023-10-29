@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
 
 namespace WinterFoodMobile.Models
 {
     public class NutritionalInfo
     {
-        [Key]
+        [PrimaryKey, AutoIncrement, Unique, NotNull]
         public int NutritionalInfoID { get; set; }
         public int IngredientID { get; set; }
         public float VitaminA { get; set; }

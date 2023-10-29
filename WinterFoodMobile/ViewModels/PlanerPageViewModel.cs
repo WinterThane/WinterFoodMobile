@@ -1,6 +1,4 @@
-﻿using SQLite;
-using System.Numerics;
-using WinterFoodMobile.Database;
+﻿using WinterFoodMobile.Database;
 using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.ViewModels
@@ -14,42 +12,39 @@ namespace WinterFoodMobile.ViewModels
 
         public PlanerPageViewModel()
         {
-            var databaseService = new DatabaseService();
-            var recipeService = new RecipeService(databaseService.GetConnection());
-            var cookingPlanService = new CookingPlanService(databaseService.GetConnection());
+            //var databaseService = new DatabaseService();
+            //var recipeService = new RecipeService(databaseService.GetConnection());
+            //var cookingPlanService = new CookingPlanService(databaseService.GetConnection());
 
-            Recipes = new List<Recipe>();
-            Recipes.AddRange(recipeService.GetAllRecipesTask());
+            //Recipes = new List<Recipe>();
+            //Recipes.AddRange(recipeService.GetAllRecipes());
 
-            if (Recipes.Any())
-            {
-                IsDetailsVisible = false;
-                IsListVisible = true;
-            }
-            else
-            {
-                IsDetailsVisible = true;
-                IsListVisible = false;
-            }
+            //if (Recipes.Any())
+            //{
+            //    IsDetailsVisible = false;
+            //    IsListVisible = true;
+            //}
+            //else
+            //{
+            //    IsDetailsVisible = true;
+            //    IsListVisible = false;
+            //}
         }
 
         public void AddRecipeToPlan(Recipe recipe, DateTime date)
         {
-            var databaseService = new DatabaseService();
-            var cookingPlanService = new CookingPlanService(databaseService.GetConnection());
+            //var databaseService = new DatabaseService();
+            //var cookingPlanService = new CookingPlanService(databaseService.GetConnection());
 
-            var plan = new CookingPlan
-            {
-                UserID = 1,
-                RecipeID = recipe.RecipeID,
-                ScheduledDate = date,
-                Notes = "xxx"
-            };
+            //var plan = new CookingPlan
+            //{
+            //    UserID = 1,
+            //    RecipeID = recipe.RecipeID,
+            //    ScheduledDate = date,
+            //    Notes = "xxx"
+            //};
 
-            cookingPlanService.InsertCookingPlanTask(plan);
-
-            //CookingPlanService service = new CookingPlanService(database);
-            //int rowsAffected = service.InsertCookingPlanTask(plan);
+            //cookingPlanService.InsertCookingPlan(plan);
         }
     }
 }

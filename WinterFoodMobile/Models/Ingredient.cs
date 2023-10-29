@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
 
 namespace WinterFoodMobile.Models
 {
     public class Ingredient
     {
-        [Key]
+        [PrimaryKey, AutoIncrement, Unique, NotNull]
         public int IngredientID { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }

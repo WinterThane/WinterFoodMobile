@@ -5,27 +5,26 @@ namespace WinterFoodMobile.Database
 {
     public class CookingPlanService
     {
-        private SQLiteConnection _database;
+        private readonly SQLiteConnection _database;
 
         public CookingPlanService(SQLiteConnection database)
         {
             _database = database;
+            CreateCookingPlanTable();
         }
 
-        public CookingPlan GetRecipeByDate(DateTime date)
+        public void CreateCookingPlanTable()
         {
-            return _database.Find<CookingPlan>(date);
+            if (!_database.GetTableInfo("CookingPlan").Any())
+            {
+                _database.CreateTable<CookingPlan>();
+            }
         }
 
-        public void InsertCookingPlanTask(CookingPlan cookingPlan)
-        {
-            _database.Insert(cookingPlan);
-
-            //string insertQuery = "INSERT INTO CookingPlan (UserID, RecipeID, ScheduledDate, Notes) VALUES (@UserID, @RecipeID, @ScheduledDate, @Notes)";
-            //return _database.Execute(insertQuery, cookingPlan);
-
-            //_database.Insert(cookingPlan);
-            //return cookingPlan.PlanID;
-        }
+        public List<CookingPlan> GetAllCookingPlans() => _database.Table<CookingPlan>().ToList();
+        public CookingPlan GetCookingPlanByDate(DateTime date) => _database.Find<CookingPlan>(date);
+        public void InsertCookingPlan(CookingPlan cookingPlan) => _database.Insert(cookingPlan);
+        public void UpdateCookingRecipe(CookingPlan cookingPlan) => _database.Update(cookingPlan);
+        public void DeleteCookingPlan(int id) => _database.Delete(id);
     }
 }

@@ -20,126 +20,165 @@
         </Style>
     </ContentPage.Resources>
 
-    <ListView ItemsSource="{Binding Recipes}"
-              HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <toolkit:Expander>
-                        <toolkit:Expander.Header>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="0" 
+                  Grid.Column="0"
+                  Grid.ColumnSpan="3"
+                  Margin="0, 0, 0, 20"
+                  ItemsSource="{Binding RecipeList}"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  IsPullToRefreshEnabled="True"
+                  x:Name="RecipeListBox"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <toolkit:Expander>
+                            <toolkit:Expander.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" 
+                                           Source="{Binding ImageURL}"
+                                           HeightRequest="30"
+                                           Margin="10, 5, 5, 5"
+                                           VerticalOptions="Center" />
+
+                                    <Label Grid.Column="1" 
+                                           Text="{Binding Title}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           HeightRequest="30"
+                                           Margin="5"
+                                           VerticalTextAlignment="Center" />
+
+                                    <Image Grid.Column="2"
+                                           HeightRequest="25"
+                                           Margin="5, 5, 10, 5"
+                                           HorizontalOptions="End"
+                                           Source="{Binding Favourite, Converter={StaticResource FavouriteTrueFalseConverter}}"/>
+                                </Grid>
+
+                            </toolkit:Expander.Header>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                <Image Grid.Column="0" 
-                                       Source="{Binding ImageURL}"
-                                       HeightRequest="30"
-                                       Margin="10, 5, 5, 5"
-                                       VerticalOptions="Center" />
-
-                                <Label Grid.Column="1" 
-                                       Text="{Binding Title}"
-                                       FontSize="16"
-                                       FontAttributes="Bold"
-                                       HeightRequest="30"
-                                       Margin="5"
-                                       VerticalTextAlignment="Center" />
-
-                                <Image Grid.Column="2"
-                                       HeightRequest="25"
-                                       Margin="5, 5, 10, 5"
-                                       HorizontalOptions="End"
-                                       Source="{Binding Favourite, Converter={StaticResource FavouriteTrueFalseConverter}}"/>
-                            </Grid>
-
-                        </toolkit:Expander.Header>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Border Grid.Column="0"
-                                    Grid.Row="0"
-                                    Margin="0, 0, 10, 0"
-                                    Padding="10, 7, 10, 7"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 0, 20, 0, 20"
-                                    BackgroundColor="#202020">
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Description}" />
-
-                                    <Label Text="Prep. time:"
-                                           Style="{StaticResource titleLabel}" />
-                                    <HorizontalStackLayout>
-                                        <Label Text="{Binding PrepTime}" />
-                                        <Label Text=" minutes" />
-                                    </HorizontalStackLayout>
-
-                                    <Label Text="Cooking time:"
-                                           Style="{StaticResource titleLabel}" />
-                                    <HorizontalStackLayout>
-                                        <Label Text="{Binding CookingTime}" />
-                                        <Label Text=" minutes" />
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </Border>
-
-                            <Border Grid.Row="0" 
-                                    Grid.Column="1"
-                                    StrokeThickness="0"
-                                    Margin="10, 0, 0, 0"
-                                    StrokeShape="RoundRectangle 20, 0, 20, 0"
-                                    BackgroundColor="#202020">
-                                <Image Source="{Binding ImageURL}"
-                                       Aspect="Fill"/>    
-                            </Border>
-
-                            <Border Grid.Row="1" 
-                                    Grid.Column="0" 
-                                    WidthRequest="120"
-                                    StrokeThickness="0"
-                                    Margin="0, 10, 10, 10"
-                                    BackgroundColor="#FAD225"
-                                    HorizontalOptions="Start"
-                                    StrokeShape="RoundRectangle 0, 10, 0, 10">
-                                <Button Text="Edit recipe"
+                                <Border Grid.Column="0"
+                                        Grid.Row="0"
                                         Margin="0, 0, 10, 0"
-                                        HeightRequest="40">
-                                    <Button.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="EditRecipe_Tapped" />
-                                    </Button.GestureRecognizers>
-                                </Button>
-                            </Border>
+                                        Padding="10, 7, 10, 7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 0, 20, 0, 20"
+                                        BackgroundColor="#202020">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Description}" />
 
-                            <Border Grid.Row="1" 
-                                    Grid.Column="1" 
-                                    WidthRequest="120"
-                                    StrokeThickness="0"
-                                    Margin="10, 10, 0, 10"
-                                    BackgroundColor="#FAD225"
-                                    HorizontalOptions="End"
-                                    StrokeShape="RoundRectangle 10, 0, 10, 0">
-                                <Button Text="Add to plan"
-                                        HeightRequest="40">
-                                    <Button.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="AddToPlan_Tapped" />
-                                    </Button.GestureRecognizers>
-                                </Button>
-                            </Border>
-                        </Grid>
-                    </toolkit:Expander>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                                        <Label Text="Prep. time:"
+                                               Style="{StaticResource titleLabel}" />
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding PrepTime}" />
+                                            <Label Text=" minutes" />
+                                        </HorizontalStackLayout>
+
+                                        <Label Text="Cooking time:"
+                                               Style="{StaticResource titleLabel}" />
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding CookingTime}" />
+                                            <Label Text=" minutes" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <Border Grid.Row="0" 
+                                        Grid.Column="1"
+                                        StrokeThickness="0"
+                                        Margin="10, 0, 0, 0"
+                                        StrokeShape="RoundRectangle 20, 0, 20, 0"
+                                        BackgroundColor="#202020">
+                                    <Image Source="{Binding ImageURL}"
+                                           Aspect="Fill"/>
+                                </Border>
+
+                                <Border Grid.Row="1" 
+                                        Grid.Column="0" 
+                                        WidthRequest="120"
+                                        StrokeThickness="0"
+                                        Margin="0, 10, 10, 10"
+                                        BackgroundColor="#FAD225"
+                                        HorizontalOptions="Start"
+                                        StrokeShape="RoundRectangle 0, 10, 0, 10">
+                                    <Button Text="Edit recipe"
+                                            Margin="0, 0, 10, 0"
+                                            HeightRequest="40">
+                                        <Button.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EditRecipe_Tapped" />
+                                        </Button.GestureRecognizers>
+                                    </Button>
+                                </Border>
+
+                                <Border Grid.Row="1" 
+                                        Grid.Column="1" 
+                                        WidthRequest="120"
+                                        StrokeThickness="0"
+                                        Margin="10, 10, 0, 10"
+                                        BackgroundColor="#FAD225"
+                                        HorizontalOptions="End"
+                                        StrokeShape="RoundRectangle 10, 0, 10, 0">
+                                    <Button Text="Add to plan"
+                                            HeightRequest="40">
+                                        <Button.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="AddToPlan_Tapped" />
+                                        </Button.GestureRecognizers>
+                                    </Button>
+                                </Border>
+                            </Grid>
+                        </toolkit:Expander>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                BorderColor="#FAD225"
+                BorderWidth="2"
+                BackgroundColor="Black">
+            <Button.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
+            </Button.GestureRecognizers>
+        </Button>
+        <ImageButton Grid.Row="1"  
+                     Grid.Column="1"
+                     Source="btn_add"
+                     BorderColor="Transparent"
+                     BorderWidth="0"
+                     HeightRequest="40">
+            <ImageButton.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+    </Grid>
 </ContentPage>

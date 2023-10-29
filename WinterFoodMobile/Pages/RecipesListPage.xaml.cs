@@ -4,10 +4,10 @@ namespace WinterFoodMobile.Pages;
 
 public partial class RecipesListPage : ContentPage
 {
-	public RecipesListPage()
+    public RecipesListPage()
 	{
 		InitializeComponent();
-	}
+    }
 
     private void AddToPlan_Tapped(object sender, TappedEventArgs e)
     {
@@ -25,5 +25,10 @@ public partial class RecipesListPage : ContentPage
             var selectedRecipe = button.BindingContext as Recipe;
             await Navigation.PushAsync(new RecipeDetailsPage(selectedRecipe));
         }
-    }    
+    }
+
+    private async void AddNewRecipe_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushAsync(new NewRecipePage());
+    }
 }

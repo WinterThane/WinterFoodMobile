@@ -50,10 +50,13 @@
 
 	<ItemGroup>
 	  <None Remove="Database\wtrecipesdb.db3" />
+	  <None Remove="Resources\Images\btn_add.svg" />
+	  <None Remove="Resources\Images\btn_addtoplan.svg" />
 	  <None Remove="Resources\Images\btn_plan.png" />
 	  <None Remove="Resources\Images\btn_recipes.png" />
-	  <None Remove="Resources\Images\favourite0.png" />
-	  <None Remove="Resources\Images\favourite1.png" />
+	  <None Remove="Resources\Images\btn_saverecipe.svg" />
+	  <None Remove="Resources\Images\favourite0.svg" />
+	  <None Remove="Resources\Images\favourite1.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +69,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="Dapper" Version="2.1.11" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.6" />
 	</ItemGroup>
@@ -75,6 +79,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainMenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\NewRecipePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\PlanerPage.xaml">

@@ -3,18 +3,22 @@ using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.Database
 {
-    public class CategoryService
+    public static class CategoryService
     {
-        private SQLiteConnection _database;
+        static SQLiteAsyncConnection _database;
 
-        public CategoryService(SQLiteConnection database)
+        static async Task Init()
         {
-            _database = database;
+            if (_database != null) return;
+
+            _database = new SQLiteAsyncConnection(Config.dbPath);
+            await _database.CreateTableAsync<Category>();
         }
 
-        public Category GetCategoryTask(int id)
+        public static async Task<IEnumerable<Category>> GetAllCategories()
         {
-            return _database.Find<Category>(id);
+            await Init();
+            return await _database.Table<Category>().ToListAsync();
         }
     }
 }

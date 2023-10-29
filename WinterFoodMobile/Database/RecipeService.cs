@@ -3,38 +3,46 @@ using WinterFoodMobile.Models;
 
 namespace WinterFoodMobile.Database
 {
-    public class RecipeService
+    public static class RecipeService
     {
-        private SQLiteConnection _database;
+        static SQLiteAsyncConnection _database;
 
-        public RecipeService(SQLiteConnection database)
+        static async Task Init()
         {
-            _database = database;
+            if (_database != null) return;
+
+            _database = new SQLiteAsyncConnection(Config.dbPath);
+            await _database.CreateTableAsync<Recipe>();
         }
 
-        public List<Recipe> GetAllRecipesTask() 
+        public static async Task<IEnumerable<Recipe>> GetAllRecipes()
         {
-            return _database.Table<Recipe>().ToList();
+            await Init();
+            return await _database.Table<Recipe>().ToListAsync();
         }
 
-        public Recipe GetRecipeTask(int id)
+        public static async Task<Recipe> GetRecipeById(int id)
         {
-            return _database.Find<Recipe>(id);
+            await Init();
+            return await _database.Table<Recipe>().Where(r => r.RecipeID == id).FirstOrDefaultAsync();
         }
 
-        public int InsertRecipeTask(Recipe recipe)
+        public static async Task InsertRecipe(Recipe recipe)
         {
-            return _database.Insert(recipe);
+            await Init();
+            await _database.InsertAsync(recipe);
         }
 
-        public int UpdateRecipeTask(Recipe recipe)
+        public static async Task UpdateRecipe(Recipe recipe)
         {
-            return _database.Update(recipe);
+            await Init();
+            await _database.UpdateAsync(recipe);
         }
-
-        public int DeleteRecipeTask(int id)
+        
+        public static async Task DeleteRecipe(int id)
         {
-            return _database.Delete(id);
+            await Init();
+            await _database.DeleteAsync<Recipe>(id);
         }
     }
 }
