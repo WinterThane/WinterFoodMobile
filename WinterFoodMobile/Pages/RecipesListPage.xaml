@@ -4,12 +4,38 @@
              x:Class="WinterFoodMobile.Pages.RecipesListPage"
              xmlns:vm="clr-namespace:WinterFoodMobile.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             BackgroundColor="Black"
-             Title="All recipes">
+             BackgroundColor="Black">
 
     <ContentPage.BindingContext>
         <vm:RecipesListPageViewModel />
     </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" 
+                   Text="All recipes"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   Margin="0, 0, 50, 0"
+                   TextColor="#FAD225"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center" />
+            <ImageButton Grid.Column="1" 
+                         Source="btn_add"
+                         BorderColor="Transparent"
+                         BorderWidth="0"
+                         HeightRequest="35">
+                <ImageButton.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
+                </ImageButton.GestureRecognizers>
+            </ImageButton>
+        </Grid>
+    </NavigationPage.TitleView>
 
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="titleLabel">
@@ -21,20 +47,7 @@
     </ContentPage.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <ListView Grid.Row="0" 
-                  Grid.Column="0"
-                  Grid.ColumnSpan="3"
-                  Margin="0, 0, 0, 20"
+        <ListView Margin="0, 0, 0, 20"
                   ItemsSource="{Binding RecipeList}"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -160,25 +173,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <Button Grid.Row="1"
-                Grid.Column="1"
-                BorderColor="#FAD225"
-                BorderWidth="2"
-                BackgroundColor="Black">
-            <Button.GestureRecognizers>
-                <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
-            </Button.GestureRecognizers>
-        </Button>
-        <ImageButton Grid.Row="1"  
-                     Grid.Column="1"
-                     Source="btn_add"
-                     BorderColor="Transparent"
-                     BorderWidth="0"
-                     HeightRequest="40">
-            <ImageButton.GestureRecognizers>
-                <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
-            </ImageButton.GestureRecognizers>
-        </ImageButton>
     </Grid>
 </ContentPage>

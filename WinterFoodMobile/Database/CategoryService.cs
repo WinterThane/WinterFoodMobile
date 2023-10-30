@@ -15,6 +15,12 @@ namespace WinterFoodMobile.Database
             await _database.CreateTableAsync<Category>();
         }
 
+        public static async Task<Category> GetCategoryById(int id)
+        {
+            await Init();
+            return await _database.Table<Category>().Where(r => r.CategoryID == id).FirstOrDefaultAsync();
+        }
+
         public static async Task<IEnumerable<Category>> GetAllCategories()
         {
             await Init();

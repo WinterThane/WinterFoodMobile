@@ -8,6 +8,7 @@ namespace WinterFoodMobile.ViewModels
     public class NewRecipePageViewModel
     {
         public Recipe RecipeObj { get; set; }
+        public Category SelectedCategory { get; set; }
         public ObservableRangeCollection<Category> CategoryObj { get; set; }
         public AsyncCommand AddRecipeCommand { get; }
 
@@ -27,20 +28,9 @@ namespace WinterFoodMobile.ViewModels
 
         async Task AddRecipe()
         {
-            //var newRecipe = new Recipe
-            //{
-            //    Title = "Recipe 1",
-            //    Description = "Description for Recipe 1",
-            //    Instructions = "Instructions for Recipe 1",
-            //    PrepTime = 30,
-            //    CookingTime = 60,
-            //    Servings = 4,
-            //    ImageURL = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-healthy-food-png-image_3776802.jpg",
-            //    Favourite = false,
-            //    CategoryID = 1
-            //};
             if (RecipeObj != null)
             {
+                RecipeObj.CategoryID = SelectedCategory != null ? SelectedCategory.CategoryID : 1;
                 await RecipeService.InsertRecipe(RecipeObj);
             }            
         }

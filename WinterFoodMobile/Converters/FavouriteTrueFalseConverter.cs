@@ -10,11 +10,11 @@ namespace WinterFoodMobile.Converters
             {
                 if (boolValue)
                 {
-                    return ImageSource.FromFile("favourite1.png");
+                    return "favourite1.svg";
                 }
             }
 
-            return ImageSource.FromFile("favourite0.png");
+            return "favourite0.svg";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

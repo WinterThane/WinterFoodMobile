@@ -2,8 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WinterFoodMobile.Pages.MainMenuPage"   
-             BackgroundColor="Black"
-             Title="WT's Recipes App">
+             BackgroundColor="Black">
+
+    <NavigationPage.TitleView>
+        <Label Grid.Column="0" 
+               Text="WT's Recipes App"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="0, 0, 50, 0"
+               TextColor="#FAD225"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center" />
+    </NavigationPage.TitleView>
 
     <Grid>
         <Grid.RowDefinitions>

@@ -3,12 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WinterFoodMobile.Pages.NewRecipePage"
              xmlns:vm="clr-namespace:WinterFoodMobile.ViewModels"
-             BackgroundColor="Black"
-             Title="Add New Recipe">
+             BackgroundColor="Black">
 
     <ContentPage.BindingContext>
         <vm:NewRecipePageViewModel />
     </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <Label Grid.Column="0" 
+               Text="Add New Recipe"
+               FontSize="20"
+               FontAttributes="Bold"
+               Margin="0, 0, 50, 0"
+               TextColor="#FAD225"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center" />
+    </NavigationPage.TitleView>
 
     <ContentPage.Resources>
         <Style TargetType="Entry" x:Key="entryStyle">
@@ -26,7 +36,6 @@
                    Text="{Binding RecipeObj.Title}"
                    Style="{StaticResource entryStyle}" />
 
-
             <Label Text="Description" />
             <Entry Placeholder="Enter a description"
                    Text="{Binding RecipeObj.Description}"
@@ -39,7 +48,7 @@
 
             <Label Text="Prep. Time" />
             <Entry Placeholder="Enter preparation time"
-                   Text="{Binding RecipeObj.Description}"
+                   Text="{Binding RecipeObj.PrepTime}"
                    Style="{StaticResource entryStyle}" />
 
             <Label Text="Cooking Time" />
@@ -53,24 +62,26 @@
                    Style="{StaticResource entryStyle}" />
 
             <Label Text="Image URL" />
-            <Entry Placeholder="Enter a description"
-                   Text="{Binding RecipeObj.Description}"
+            <Entry Placeholder="Enter a picture URL"
+                   Text="{Binding RecipeObj.ImageURL}"
                    Style="{StaticResource entryStyle}" />
 
             <Label Text="Image upload" />
-            <Entry Placeholder="Enter a description"
-                   Text="{Binding RecipeObj.Description}"
+            <Entry Placeholder="Browse pictures"
+                   Text="{Binding RecipeObj.ImageData}"
                    Style="{StaticResource entryStyle}" />
 
             <Label Text="Category" />
             <Picker Title="Select a category" 
-                    ItemsSource="{Binding CategoryObj}">
+                    ItemsSource="{Binding CategoryObj}"
+                    SelectedItem="{Binding SelectedCategory}">
                 <Picker.ItemDisplayBinding>
                     <Binding Path="Name" />
                 </Picker.ItemDisplayBinding>
             </Picker>
 
-            <ImageButton Source="btn_saverecipe" />
+            <ImageButton Source="btn_saverecipe"
+                         Command="{Binding AddRecipeCommand}" />
         </StackLayout>
     </Grid>
 </ContentPage>
