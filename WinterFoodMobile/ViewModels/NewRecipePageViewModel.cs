@@ -32,6 +32,9 @@ namespace WinterFoodMobile.ViewModels
             {
                 RecipeObj.CategoryID = SelectedCategory != null ? SelectedCategory.CategoryID : 1;
                 await RecipeService.InsertRecipe(RecipeObj);
+
+                var navigationStack = Application.Current.MainPage.Navigation;
+                await navigationStack.PopAsync();
             }            
         }
     }

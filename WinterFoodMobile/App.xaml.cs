@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using WinterFoodMobile.Converters;
+﻿using WinterFoodMobile.Converters;
 using WinterFoodMobile.Database;
 using WinterFoodMobile.Pages;
 
@@ -12,15 +11,16 @@ namespace WinterFoodMobile
             InitializeComponent();
 
             //Run only once
-            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
-            using (Stream stream = assembly.GetManifestResourceStream("WinterFoodMobile.Database.wtrecipesdb.db3"))
-            {
-                using MemoryStream memoryStream = new();
-                stream.CopyTo(memoryStream);
-                File.WriteAllBytes(Config.dbPath, memoryStream.ToArray());
-            }
+            //var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
+            //using (Stream stream = assembly.GetManifestResourceStream("WinterFoodMobile.Database.wtrecipesdb.db3"))
+            //{
+            //    using MemoryStream memoryStream = new();
+            //    stream.CopyTo(memoryStream);
+            //    File.WriteAllBytes(Config.dbPath, memoryStream.ToArray());
+            //}
 
             Resources.Add("FavouriteTrueFalseConverter", new FavouriteTrueFalseConverter());
+            CategoryService.AddCategories();
             MainPage = new NavigationPage(new MainMenuPage());
             //MainPage = new AppShell();
         }

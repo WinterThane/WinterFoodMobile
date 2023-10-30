@@ -8,8 +8,7 @@ namespace WinterFoodMobile.ViewModels
     public class RecipesListPageViewModel : ViewModelBase
     {
         public ObservableRangeCollection<Recipe> RecipeList { get; set; }
-        public AsyncCommand RefreshCommand { get; }
-        
+        public AsyncCommand RefreshCommand { get; }       
         public AsyncCommand UpdateRecipeCommand { get; }
         public AsyncCommand RemoveRecipeCommand { get; }
 

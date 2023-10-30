@@ -15,6 +15,17 @@ namespace WinterFoodMobile.Database
             await _database.CreateTableAsync<Category>();
         }
 
+        public static async void AddCategories()
+        {
+            _database = new SQLiteAsyncConnection(Config.dbPath);
+            await _database.DropTableAsync<Category>();
+            await _database.CreateTableAsync<Category>();
+            await _database.InsertAsync(new Category { Name = "Breakfast" });
+            await _database.InsertAsync(new Category { Name = "Main Dish" });
+            await _database.InsertAsync(new Category { Name = "Salad" });
+            await _database.InsertAsync(new Category { Name = "Dessert" });
+        }
+
         public static async Task<Category> GetCategoryById(int id)
         {
             await Init();
