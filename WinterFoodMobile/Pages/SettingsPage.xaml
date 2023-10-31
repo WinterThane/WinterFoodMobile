@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WinterFoodMobile.Pages.SettingsPage"
+             BackgroundColor="Black">
+
+    <NavigationPage.TitleView>
+        <Label Text="Settings"
+               FontSize="20"
+               Margin="0, 0, 70, 0"
+               FontAttributes="Bold"
+               TextColor="#FAD225"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <Style TargetType="Border" x:Key="borderStyle">
+            <Setter Property="Stroke" Value="#FAD225" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="BackgroundColor" Value="Black" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid ColumnSpacing="5"
+          RowSpacing="5"
+          Margin="0, 50, 0, 0"
+          HorizontalOptions="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource borderStyle}">
+            
+        </Border>
+        <Border Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource borderStyle}">
+
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource borderStyle}">
+
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource borderStyle}">
+
+        </Border>
+    </Grid>
+
+</ContentPage>

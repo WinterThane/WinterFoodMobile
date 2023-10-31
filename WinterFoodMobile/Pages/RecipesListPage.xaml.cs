@@ -27,8 +27,8 @@ public partial class RecipesListPage : ContentPage
         }
     }
 
-    private async void AddNewRecipe_Tapped(object sender, TappedEventArgs e)
+    private async void GoToSettingsPage_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushAsync(new NewRecipePage());
+        await Navigation.PushAsync(new SettingsPage());
     }
 }

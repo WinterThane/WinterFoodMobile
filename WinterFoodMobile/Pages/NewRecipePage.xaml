@@ -10,8 +10,7 @@
     </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <Label Grid.Column="0" 
-               Text="Add New Recipe"
+        <Label Text="Add New Recipe"
                FontSize="20"
                FontAttributes="Bold"
                Margin="0, 0, 50, 0"

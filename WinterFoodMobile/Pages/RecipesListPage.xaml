@@ -21,17 +21,17 @@
                    Text="All recipes"
                    FontSize="20"
                    FontAttributes="Bold"
-                   Margin="0, 0, 50, 0"
+                   Margin="0, 0, 40, 0"
                    TextColor="#FAD225"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center" />
             <ImageButton Grid.Column="1" 
-                         Source="btn_add"
+                         Source="btn_settings"
                          BorderColor="Transparent"
                          BorderWidth="0"
-                         HeightRequest="35">
+                         HeightRequest="30">
                 <ImageButton.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="AddNewRecipe_Tapped" />
+                    <TapGestureRecognizer Tapped="GoToSettingsPage_Tapped" />
                 </ImageButton.GestureRecognizers>
             </ImageButton>
         </Grid>
@@ -51,6 +51,7 @@
                   ItemsSource="{Binding RecipeList}"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  SelectionMode="None"
                   IsPullToRefreshEnabled="True"
                   x:Name="RecipeListBox"
                   HasUnevenRows="True">

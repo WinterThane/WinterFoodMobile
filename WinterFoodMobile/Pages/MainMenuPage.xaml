@@ -5,8 +5,7 @@
              BackgroundColor="Black">
 
     <NavigationPage.TitleView>
-        <Label Grid.Column="0" 
-               Text="WT's Recipes App"
+        <Label Text="WT's Recipes App"
                FontSize="20"
                FontAttributes="Bold"
                Margin="0, 0, 50, 0"
